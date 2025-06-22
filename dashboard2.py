@@ -1,3 +1,5 @@
+# type "streamlit run dashboard2.py" in terminal to run the file
+
 import streamlit as st 
 import plotly.express as px 
 import pandas as pd 
@@ -21,9 +23,9 @@ def filtering(df, store_number, product_family):
     new_df = new_df.set_index('date')
     return new_df
 
-st.set_page_config(page_title='Sales Forecast!!', page_icon=":bar_chart:", layout='wide')
+st.set_page_config(page_title='Sales Forecast!!', page_icon=":chart_with_downwards_trend:", layout='wide')
 
-st.title(" 📈 Sales Forecasting Dashboard")
+st.title(" Sales Forecasting Dashboard")
 
 fl = st.file_uploader(":file_folder: Upload a file", type=['csv', 'txt', 'xlsx', 'xls'])
 
@@ -45,7 +47,7 @@ else:
     tab1, tab2 = st.tabs(["Analysis", "Forecasting"])
 
     with tab1: 
-        st.header('Start Analyzing !! 📈')
+        st.header('Start Analyzing !!📊')
 
         st.dataframe(df.head())
 
@@ -66,7 +68,6 @@ else:
        
         st.sidebar.header('Choose your filter:')
 
-        # Create cascading filters
         # 1. State filter
         sel_state = st.sidebar.multiselect('Pick your state', df['state'].unique())
         if not sel_state:
@@ -155,7 +156,7 @@ else:
     with tab2: 
         # Make sure your DataFrame is loaded (using your variable name `mdf`)
 
-        st.header('Start forecasting 📈!!')
+        st.header('Start forecasting !! 📈')
 
         
         df['date'] = pd.to_datetime(df['date'], format='%d/%m/%Y')
